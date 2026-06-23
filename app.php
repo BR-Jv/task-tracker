@@ -21,11 +21,10 @@
             
             break;
         case "list":
-            $tasks = getData();
+            $tasks = lerDados();
             
-            foreach($tasks as $task){
-               echo $task[0]["id"];
-
+            foreach($tasks as $task) { 
+                echo "ID: {$task['id']} | Descrição: {$task['description']} | Status: {$task['status']}".PHP_EOL;
             }
 
             break;
@@ -42,11 +41,15 @@
     }
 
 
-    function getData(){
-        $myfile = fopen("task-tracker.json", "r") or die("Error: Unable to open file!");
-        $file = fread($myfile, filesize("task-tracker.json")); 
-        fclose($myfile);
-        return json_decode($file, true);
+    function lerDados(){
+        $file = fopen("task-tracker.json", "r") or die("Error: Unable to open data!");
+        $a_data = fread($file, filesize("task-tracker.json")); 
+        fclose($file);
+        return toArray($a_data);
     }
-
+    
+    function toArray(String $arr){
+        $data = json_decode($arr, true);
+        return $data['Tasks'];
+    }
 
