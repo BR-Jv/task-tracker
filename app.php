@@ -33,9 +33,29 @@
     }
     
     function add(string $task) : int {
-        $id = 0;
-        //Adicionando uma nova task, deve retornar o id 
-        //! pegar o arquivo json e recuperar o último ID cadastrado
+        
+        //! Hora, segundo, milesimo está saindo errado. 
+        $dt_created = date("Y-m-d G:H:s");
+        
+        $data = [
+            "id" => 0,
+            "description" => $task,
+            "status" => "todo",
+            "createdAt" => $dt_created,
+            "updatedAt" => $dt_created
+        ];
+        $tasks = lerDados(); //? Aqui me é retornado um array com as tasks.
+        /**
+         * [
+         *  [], 
+         *  []
+         * ]
+         * 
+         */
+        
+         
+
+        
 
         return $id;
     }
