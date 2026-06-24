@@ -1,18 +1,18 @@
 {
-    "Tasks" : [
+    "Tasks": [
         {
             "id": 0,
             "description": "some description",
-            "status": "done", 
+            "status": "done",
             "createdAt": "2026-06-21 15.09.00",
-            "updatedAt": "2026-06-21 15.09.00" 
-        }, 
+            "updatedAt": "2026-06-21 15.09.00"
+        },
         {
             "id": 1,
-            "description": "some description",
-            "status": "in-progress", 
-            "createdAt": "2026-06-21 20.21.00",
-            "updatedAt": "2026-06-21 15.09.00" 
+            "description": "Terminar projeto do CLI em PHP",
+            "status": "todo",
+            "createdAt": "2026-06-23 22:22:21",
+            "updatedAt": "2026-06-23 22:22:21"
         }
     ]
 }

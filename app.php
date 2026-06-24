@@ -11,7 +11,7 @@
     switch($argv[1]) {
         case "add":
             $id = add($argv[2]);
-            echo "Task adicionado com sucesso. (ID: $id)";
+            echo "Task adicionado com sucesso. (ID: $id)".PHP_EOL;
 
             break; 
         case "update":
@@ -32,32 +32,26 @@
             exit("Comando não reconhecido");
     }
     
-    function add(string $task) : int {
+    function add(string $description) : int {
+        
+        $tasks = lerDados();
+        $id = ultimoId( $tasks ); 
         
         //! Hora, segundo, milesimo está saindo errado. 
         $dt_created = date("Y-m-d G:H:s");
-        
         $data = [
-            "id" => 0,
-            "description" => $task,
+            "id" => $id + 1,
+            "description" => $description,
             "status" => "todo",
             "createdAt" => $dt_created,
             "updatedAt" => $dt_created
         ];
-        $tasks = lerDados(); //? Aqui me é retornado um array com as tasks.
-        /**
-         * [
-         *  [], 
-         *  []
-         * ]
-         * 
-         */
         
-         
-
+        array_push($tasks, $data); 
         
-
-        return $id;
+        gravarDados($tasks);
+        
+        return $data['id'];
     }
 
 
@@ -68,8 +62,26 @@
         return toArray($a_data);
     }
     
+    function gravarDados(Array $data){
+        $file = fopen("task-tracker.json", "w") or die("Error: Unable to open data!");
+        $result = toJSON($data);
+        fwrite($file, $result); 
+        fclose($file);
+    }
+
     function toArray(String $arr){
         $data = json_decode($arr, true);
         return $data['Tasks'];
     }
+    function toJSON(Array $arr){
+        $arr = [
+            "Tasks" => $arr
+        ];
 
+        return json_encode($arr);
+    }
+
+    function ultimoId(Array $arr) : int {
+        $task = $arr[sizeof($arr) - 1];
+        return $task['id'];
+    }

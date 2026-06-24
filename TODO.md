@@ -1,6 +1,6 @@
 # Criar as funções
 
-[] add 
+[x] add 
 [] update 
 [] delete 
 [] mark in-progress 
