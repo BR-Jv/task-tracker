@@ -14,7 +14,10 @@
             echo "Task adicionado com sucesso. (ID: $id)".PHP_EOL;
 
             break; 
-        case "update":
+        case "update": 
+            $id = $argv[2]; 
+            $newDescription = $argv[3];
+            update($id, $newDescription);
             
             break; 
         case "delete": 
@@ -54,6 +57,19 @@
         return $data['id'];
     }
 
+    function update(int $id, String $newDescription) {
+        $tasks = lerDados();
+        
+        print_r($tasks[$id]);
+
+
+        $result = $tasks[$id] ;
+        $result['description'] = $newDescription; 
+
+        print_r($tasks[$id]);
+        
+        die();
+    }
 
     function lerDados(){
         $file = fopen("task-tracker.json", "r") or die("Error: Unable to open data!");
