@@ -1,10 +1,12 @@
 # Criar as funções
 
 [x] add 
-[] update 
+[x] update 
 [] delete 
+
 [] mark in-progress 
 [] mark done 
+
 [x] list 
 [] list done 
 [] list todo 

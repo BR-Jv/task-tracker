@@ -17,7 +17,8 @@
         case "update": 
             $id = $argv[2]; 
             $newDescription = $argv[3];
-            update($id, $newDescription);
+            $msg = update($id, $newDescription); 
+            echo "{$msg}" ;
             
             break; 
         case "delete": 
@@ -58,37 +59,50 @@
     }
 
     function update(int $id, String $newDescription) {
+
         $tasks = lerDados();
         
-        print_r($tasks[$id]);
-
-
-        $result = $tasks[$id] ;
-        $result['description'] = $newDescription; 
-
-        print_r($tasks[$id]);
+        $tasks[$id]['description'] = $newDescription; 
         
-        die();
+        if ( !gravarDados($tasks) ) {
+            return "Erro ao salvar task"; 
+        } 
+
+        return "Task salva com sucesso"; 
     }
 
+    
+
+
     function lerDados(){
+
+        //! Abertura de arquivo é responsabilidade de outra função.
         $file = fopen("task-tracker.json", "r") or die("Error: Unable to open data!");
+        
         $a_data = fread($file, filesize("task-tracker.json")); 
+        
         fclose($file);
         return toArray($a_data);
     }
     
-    function gravarDados(Array $data){
-        $file = fopen("task-tracker.json", "w") or die("Error: Unable to open data!");
-        $result = toJSON($data);
-        fwrite($file, $result); 
+    function gravarDados(Array $data) {
+        
+        //! Abertura de arquivo é responsabilidade de outra função. 
+        $file = fopen("task-tracker.json", "w"); 
+
+        //! Essa é responsabilidade da função 
+        $result = fwrite($file, toJSON($data)); 
+        
         fclose($file);
+
+        return gettype($result) == "integer" ? true : false;
     }
 
     function toArray(String $arr){
         $data = json_decode($arr, true);
         return $data['Tasks'];
     }
+
     function toJSON(Array $arr){
         $arr = [
             "Tasks" => $arr
