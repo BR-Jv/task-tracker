@@ -2,7 +2,7 @@
 
 [x] add 
 [x] update 
-[] delete 
+[x] delete 
 
 [] mark in-progress 
 [] mark done 

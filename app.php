@@ -22,7 +22,10 @@
             
             break; 
         case "delete": 
-            
+            $id = $argv[2];
+            $msg = delete($id);
+            echo "{$msg}" ;
+           
             break;
         case "list":
             $tasks = lerDados();
@@ -61,7 +64,7 @@
     function update(int $id, String $newDescription) {
 
         $tasks = lerDados();
-        
+
         $tasks[$id]['description'] = $newDescription; 
         
         if ( !gravarDados($tasks) ) {
@@ -71,7 +74,23 @@
         return "Task salva com sucesso"; 
     }
 
-    
+    function delete(int $id) {
+        $tasks = lerDados();
+        $newTasks = []; 
+
+        foreach($tasks as $task) {
+            if ($task['id'] != $id) {
+                array_push($newTasks, $task);
+            }  
+        }
+
+        if ( !gravarDados($newTasks) ) {
+            return "Erro ao deletar task"; 
+        } 
+
+        return "Task deletada com sucesso"; 
+        
+    }
 
 
     function lerDados(){
