@@ -35,8 +35,18 @@
             }
 
             break;
+        case "mark":
+            
+            mark($argv[2]);
+
+
+            break;
         default: 
             exit("Comando não reconhecido");
+    }
+
+    function mark($status){
+            
     }
     
     function add(string $description) : int {
