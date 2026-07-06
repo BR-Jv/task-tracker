@@ -35,19 +35,22 @@
             }
 
             break;
-        case "mark":
+        case "mark-in-progress":
+            $id = $argv[2]; 
+            $msg = updateStatus($id, 'in-progress'); 
+            echo "{$msg}";
+
+            break;
+        case "mark-done":
+            $id = $argv[2]; 
+            $msg = updateStatus($id, 'done'); 
+            echo "{$msg}";
             
-            mark($argv[2]);
-
-
             break;
         default: 
             exit("Comando não reconhecido");
     }
 
-    function mark($status){
-            
-    }
     
     function add(string $description) : int {
         
@@ -71,12 +74,37 @@
         return $data['id'];
     }
 
+    
+    function updateStatus(int $id, String $status) {
+
+        $tasks = lerDados();
+        
+        foreach($tasks as &$task){
+            if($task['id'] == $id) {
+                $task['status'] = $status;
+            }
+        }
+        unset($task);
+
+        if ( !gravarDados($tasks) ) {
+            return "Erro ao salvar task"; 
+        } 
+
+        return "Task salva com sucesso"; 
+    }
+    
+
     function update(int $id, String $newDescription) {
 
         $tasks = lerDados();
 
-        $tasks[$id]['description'] = $newDescription; 
-        
+        foreach($tasks as &$task){
+            if($task['id'] == $id) {
+                $task['description'] = $newDescription;
+            }
+        }
+        unset($task);
+
         if ( !gravarDados($tasks) ) {
             return "Erro ao salvar task"; 
         } 

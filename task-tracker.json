@@ -10,14 +10,14 @@
         {
             "id": 3,
             "description": "descri\u00e7\u00e3o de teste",
-            "status": "todo",
+            "status": "in-progress",
             "createdAt": "2026-07-01 13:13:43",
             "updatedAt": "2026-07-01 13:13:43"
         },
         {
             "id": 4,
             "description": "descri\u00e7\u00e3o de teste 2",
-            "status": "todo",
+            "status": "done",
             "createdAt": "2026-07-01 13:13:16",
             "updatedAt": "2026-07-01 13:13:16"
         }

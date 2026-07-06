@@ -4,8 +4,8 @@
 [x] update 
 [x] delete 
 
-[] mark in-progress 
-[] mark done 
+[x] mark in-progress 
+[x] mark done 
 
 [x] list 
 [] list done 
