@@ -8,9 +8,9 @@
 [x] mark done 
 
 [x] list 
-[] list done 
-[] list todo 
-[] list in-progress 
+[x] list done 
+[x] list todo 
+[x] list in-progress 
 
 # Melhorias do código 
 

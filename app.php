@@ -28,10 +28,19 @@
            
             break;
         case "list":
+            
             $tasks = lerDados();
             
-            foreach($tasks as $task) { 
-                echo "ID: {$task['id']} | Descrição: {$task['description']} | Status: {$task['status']}".PHP_EOL;
+            if(isset($argv[2])){
+                foreach($tasks as $task) {
+                    if($task['status'] == $argv[2]){
+                        echo "ID: {$task['id']} | Descrição: {$task['description']} | Status: {$task['status']}".PHP_EOL;
+                    }
+                } 
+            }else {
+                foreach($tasks as $task) { 
+                    echo "ID: {$task['id']} | Descrição: {$task['description']} | Status: {$task['status']}".PHP_EOL;
+                }
             }
 
             break;
