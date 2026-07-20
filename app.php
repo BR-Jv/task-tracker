@@ -1,12 +1,25 @@
 <?php 
 
-    $sapi = php_sapi_name();
+    require('./src/service/DataManager.php');
 
-    if($sapi != "cli"){
-        exit("Encerrando script.");
-    }
+    // $sapi = php_sapi_name();
+
+    // if($sapi != "cli"){
+    //     exit("Encerrando script.");
+    // }
+
+    $manager = new DataManager();
+    $data = [
+        "id" => 8,
+        "description" =>  "Teste com dado mocado",
+        "status" =>  "todo",
+        "createdAt" => "2026-07-10 12:12:24",
+        "updatedAt" =>  "2026-07-10 12:12:24"
+    ];
+    $manager->setData($data);
 
 
+    die();
 
     switch($argv[1]) {
         case "add":
@@ -139,7 +152,9 @@
         
     }
 
-
+    
+    //! Lógica sendo implementada no constructor da classe Manager
+    
     function lerDados(){
 
         //! Abertura de arquivo é responsabilidade de outra função.
@@ -181,3 +196,5 @@
         $task = $arr[sizeof($arr) - 1];
         return $task['id'];
     }
+
+    //!------------------------------------------------
