@@ -1,6 +1,6 @@
 <?php 
 
-    require('./src/service/DataManager.php');
+    require('./src/service/Tracker.php');
 
     // $sapi = php_sapi_name();
 
@@ -8,22 +8,13 @@
     //     exit("Encerrando script.");
     // }
 
-    $manager = new DataManager();
-    $data = [
-        "id" => 8,
-        "description" =>  "Teste com dado mocado",
-        "status" =>  "todo",
-        "createdAt" => "2026-07-10 12:12:24",
-        "updatedAt" =>  "2026-07-10 12:12:24"
-    ];
-    $manager->setData($data);
-
-
-    die();
+    $app = new Tracker();
 
     switch($argv[1]) {
         case "add":
-            $id = add($argv[2]);
+            $app->add($argv[2]);
+
+            // $id = add($argv[2]);
             echo "Task adicionado com sucesso. (ID: $id)".PHP_EOL;
 
             break; 
